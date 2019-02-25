@@ -44,13 +44,9 @@ public class project3{
         int currFamilyIndex = -1;//keeps track of who the current family is for tags that are specific to a family (such as HUSB)
         String lastDate = "";//used to determine whether DATE applies to BIRT, DEAT, MARR, or DIV
         
+        Scanner sc = new Scanner(System.in);
         
-        if(args.length != 1){
-            System.out.println("1 argument expected, got " + args.length + ". The argument should be the path of the GEDCOM file");
-            System.exit(1);
-        }
-        
-        File f = new File(args[0]);
+        File f = new File(sc.nextLine());
         if(!f.isFile()){
             System.out.println("Argument given is not a valid file. Please specify the path of a GEDCOM file");
             System.exit(1);
