@@ -45,7 +45,7 @@ public class project3{
         String lastDate = "";//used to determine whether DATE applies to BIRT, DEAT, MARR, or DIV
         
         Scanner sc = new Scanner(System.in);
-        
+        System.out.println("Please enter the file name.");
         File f = new File(sc.nextLine());
         if(!f.isFile()){
             System.out.println("Argument given is not a valid file. Please specify the path of a GEDCOM file");
