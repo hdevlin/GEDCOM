@@ -101,6 +101,19 @@ public class person implements Comparable<person>{
         //TODO: add age calculation
     }
     
+    public boolean birthBeforeDeath() //returns true if birth is before death (US03)
+    {
+    	boolean error = true;
+    	if (deathdate != "NA")
+    	{
+        	Date birth = new Date(birthday);
+        	Date death = new Date(deathdate);
+        	error = Date.before(birth, death);
+        	
+    	}
+    	return error;
+    }
+    
     @Override
     public int compareTo(person p){
         return this.getID().compareTo(p.getID());

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-
 public class project3{
     
     /*public static int famIndex(String input, ArrayList<family> arr){
@@ -31,7 +30,7 @@ public class project3{
         return locationInArr(arr, s, ++curr);
         
     }
-    
+   
     // The main function takes in 1 argument, which is the path to a GEDCOM file (if GEDCOM file is in the same folder as the executable, then just the file name).
     
     public static void main(String[] args)throws Exception{
@@ -158,19 +157,49 @@ public class project3{
             } else if(second.equals("DATE") && first.equals("2")){
                 if(lastDate.equals("BIRT")){
                     if(currPersonIndex != -1)
-                        people.get(currPersonIndex).setBirthday(third.concat(s));
+                    {
+                    	person current = people.get(currPersonIndex);
+                        current.setBirthday(third.concat(s));
+                        if (!current.birthBeforeDeath())
+                        {
+                        	System.out.println("ERROR: Birth occured after Death");
+                        }
+                    }
+                    
                 } else if(lastDate.equals("DEAT")){
                     if(currPersonIndex != -1)
-                        people.get(currPersonIndex).setDeathdate(third.concat(s));
+                    {
+                    	person current = people.get(currPersonIndex);
+                        current.setDeathdate(third.concat(s));
+                        if (!current.birthBeforeDeath())
+                        {
+                        	System.out.println("ERROR: Birth occured after Death");
+                        }
+                    }
                 } else if(lastDate.equals("MARR")){
                     if(currFamilyIndex != -1)
-                        families.get(currFamilyIndex).setMarrdate(third.concat(s));
+                    {
+                    	family current = families.get(currFamilyIndex);
+                    	current.setMarrdate(third.concat(s));
+                    	if (!current.marryBeforeDivorce())
+                    	{
+                    		System.out.println("ERROR: Marriage after Divorce");
+                    	}
+                    }
                 } else if(lastDate.equals("DIV")){
                     if(currFamilyIndex != -1)
-                        families.get(currFamilyIndex).setDivdate(third.concat(s));
+                    {
+                    	family current = families.get(currFamilyIndex);
+                    	current.setDivdate(third.concat(s));
+                    	if (!current.marryBeforeDivorce())
+                    	{
+                    		System.out.println("ERROR: Marriage after Divorce");
+                    	}
+
+                    }
                 }
             }
-            
+           
         }
         
         Collections.sort(people);

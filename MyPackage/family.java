@@ -59,6 +59,18 @@ public class family implements Comparable<family>{
         this.husbandid = input;
         return input;
     }
+    public boolean marryBeforeDivorce() //returns true if the marriage happened before the divorce (US04)
+    {
+    	boolean value = true;
+    	if (divdate != "NA")
+    	{
+        	Date marry = new Date(marrdate);
+        	Date divorce = new Date(divdate);
+        	value = Date.before(marry, divorce);
+    	}
+    	return value;
+
+    }
     
     /*public String getHusbandname(){
         return this.husbandname;
