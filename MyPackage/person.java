@@ -10,6 +10,8 @@ public class person implements Comparable<person>{
     private String deathdate;//NA if perosn is alive
     private String children;
     private String spouse;
+    private String weddingdate;
+    private String divorcedate;
     
     public person(){
         id = "";
@@ -21,6 +23,8 @@ public class person implements Comparable<person>{
         deathdate = "NA";
         children = "NA";
         spouse = "NA";
+        weddingdate = "NA";
+        divorcedate = "NA";
     }
     
     public String getID(){
@@ -94,6 +98,15 @@ public class person implements Comparable<person>{
         this.spouse = input;
         return input;
     }
+    public String setWeddingdate(String input) {
+    	this.weddingdate = input;
+    	return input;
+    }
+    
+    public String setDivorcedate(String input) {
+    	this.divorcedate = input;
+    	return input;
+    }
     
     @Override
     public String toString(){
@@ -110,6 +123,29 @@ public class person implements Comparable<person>{
         	Date death = new Date(deathdate);
         	error = Date.before(birth, death);
         	
+    	}
+    	return error;
+    }
+    
+    public boolean marriageBeforeDeath() {
+    	//returns true if marriage is before death
+    	
+    	boolean error = true;
+    	if (weddingdate != "NA") {
+    		Date wedding = new Date(weddingdate);
+    		Date death = new Date(deathdate);
+    		error = Date.before(wedding, death);
+    	}
+    	return error;
+    }
+    public boolean divorceBeforeDeath() {
+    	//returns true if divorce is before death
+    	
+    	boolean error = true;
+    	if (divorcedate != "NA") {
+    		Date divorce = new Date(divorcedate);
+    		Date death = new Date(deathdate);
+    		error = Date.before(divorce, death);
     	}
     	return error;
     }
