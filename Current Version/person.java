@@ -1,5 +1,8 @@
 package MyPackage;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 public class person implements Comparable<person>{
     private String id;
     private String name;
@@ -117,11 +120,11 @@ public class person implements Comparable<person>{
     public boolean birthBeforeDeath() //returns true if birth is before death (US03)
     {
     	boolean error = true;
-    	if (deathdate != "NA")
+    	if (deathdate != "NA" && birthday != "")
     	{
-        	Date birth = new Date(birthday);
-        	Date death = new Date(deathdate);
-        	error = Date.before(birth, death);
+        	date birth = new date(birthday);
+        	date death = new date(deathdate);
+        	error = date.before(birth, death);
         	
     	}
     	return error;
@@ -131,10 +134,10 @@ public class person implements Comparable<person>{
     	//returns true if marriage is before death
     	
     	boolean error = true;
-    	if (weddingdate != "NA") {
-    		Date wedding = new Date(weddingdate);
-    		Date death = new Date(deathdate);
-    		error = Date.before(wedding, death);
+    	if (weddingdate != "NA" && deathdate != "NA") {
+    		date wedding = new date(weddingdate);
+    		date death = new date(deathdate);
+    		error = date.before(wedding, death);
     	}
     	return error;
     }
@@ -142,10 +145,75 @@ public class person implements Comparable<person>{
     	//returns true if divorce is before death
     	
     	boolean error = true;
-    	if (divorcedate != "NA") {
-    		Date divorce = new Date(divorcedate);
-    		Date death = new Date(deathdate);
-    		error = Date.before(divorce, death);
+    	if (divorcedate != "NA" && deathdate != "NA") {
+    		date divorce = new date(divorcedate);
+    		date death = new date(deathdate);
+    		error = date.before(divorce, death);
+    	}
+    	return error;
+    }
+	
+	public boolean birthBeforeCurrentDate(){ //returns true if birthday is before the current date (US01)
+		if(birthday != ""){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(birthday)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
+	
+	public boolean deathBeforeCurrentDate(){ //returns true if death date is before the current date (US01)
+		if(deathdate != "NA"){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(deathdate)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
+	
+	public boolean marriageBeforeCurrentDate(){ //returns true if wedding date is before the current date (US01)
+		if(weddingdate != "NA"){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(weddingdate)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
+	
+	public boolean divorceBeforeCurrentDate(){ //returns true if divorce date is before the current date (US01)
+		if(divorcedate != "NA"){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(divorcedate)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
+	
+	public boolean birthBeforeMarriage() //returns true if birth is before marriage (US02)
+    {
+    	boolean error = true;
+    	if (deathdate != "NA" && weddingdate != "NA")
+    	{
+        	date birth = new date(birthday);
+        	date wedding = new date(weddingdate);
+        	error = date.before(birth, wedding);
+        	
     	}
     	return error;
     }

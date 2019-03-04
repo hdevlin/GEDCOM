@@ -1,5 +1,7 @@
 /*
+ * Nick Cacchione
  * Hunter Devlin
+ * Leo Ouyang
  * I pledge my honor that I have abided by the Stevens Honor System
 */
 
@@ -30,8 +32,6 @@ public class project3{
         return locationInArr(arr, s, ++curr);
         
     }
-   
-    // The main function takes in 1 argument, which is the path to a GEDCOM file (if GEDCOM file is in the same folder as the executable, then just the file name).
     
     public static void main(String[] args)throws Exception{
         

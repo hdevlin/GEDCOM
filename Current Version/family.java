@@ -1,6 +1,8 @@
 package MyPackage;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class family implements Comparable<family>{
     
@@ -64,13 +66,39 @@ public class family implements Comparable<family>{
     	boolean value = true;
     	if (divdate != "NA")
     	{
-        	Date marry = new Date(marrdate);
-        	Date divorce = new Date(divdate);
-        	value = Date.before(marry, divorce);
+        	date marry = new date(marrdate);
+        	date divorce = new date(divdate);
+        	value = date.before(marry, divorce);
     	}
     	return value;
 
     }
+	
+	public boolean marriageBeforeCurrentDate(){ //returns true if wedding date is before the current date (US01)
+		if(marrdate != ""){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(marrdate)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
+	
+	public boolean divorceBeforeCurrentDate(){ //returns true if divorce date is before the current date (US01)
+		if(divdate != "NA"){
+			Date curr = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+			try{
+			return curr.compareTo(sdf.parse(divdate)) >= 0;
+			} catch(Exception e){
+				System.out.println("failed parse with exception" + e.toString());
+			}
+		}
+		return true;
+	}
     
     /*public String getHusbandname(){
         return this.husbandname;

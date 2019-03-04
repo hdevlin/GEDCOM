@@ -1,6 +1,6 @@
 package MyPackage;
 
-public class Date {
+public class date {
 	//holds operations for working with dates
 	public int day, month, year;
 	static int convertMonth(String str) //converts a month to number
@@ -35,7 +35,7 @@ public class Date {
 			return -1;
 		}
 	}
-	public Date(String str) //expects a string of form 'day month year'"
+	public date(String str) //expects a string of form 'day month year'"
 	{
 		int firstSpace = str.indexOf(" ");
 		day = Integer.parseInt(str.substring(0,firstSpace));
@@ -47,7 +47,7 @@ public class Date {
 	{
 		return Integer.toString(day) + " " + Integer.toString(month) + " " + Integer.toString(year);
 	}
-	public static boolean before(Date d1, Date d2) //returns whether or not d1 comes before d2
+	public static boolean before(date d1, date d2) //returns whether or not d1 comes before d2
 	{
 		
 		return (d1.year < d2.year) || (d1.year == d2.year && d1.month < d2.month)|| (d1.year == d2.year && d1.month == d2.month && d1.day < d2.day);
