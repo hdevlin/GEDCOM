@@ -30,6 +30,18 @@ public class family implements Comparable<family>{
         }
     }
     
+	public person locationInArrList(ArrayList<person> arrList, String id){
+		int size = arrList.size();
+		for (int i = 0; i < size; i ++)
+		{
+			if (arrList.get(i).getID().equals(id))
+			{
+				return arrList.get(i);
+			}
+		}
+		return null;
+	}
+	
     public String getID(){
         return this.id;
     }
@@ -124,6 +136,29 @@ public class family implements Comparable<family>{
         this.children.add(input);
         return input;
     }
+	public boolean birthBeforeMarriage(ArrayList<person> arrList)
+	{
+		for(int j=0; j<children.size(); j++){
+			String child = children.get(j);
+			person person1 = locationInArrList(arrList, child);
+			if (person1 != null)
+			{
+				String birthday = person1.getBirthday();
+				
+				date birthdayDate = new date(birthday);
+				date weddingDate = new date(marrdate);
+				
+				if(!weddingDate.before(weddingDate, birthdayDate)){
+					return true;
+				}
+			}
+			else
+			{
+				throw new NullPointerException("Person is  null");
+			}
+		}
+		return false;
+	}
     
     @Override
     public String toString(){

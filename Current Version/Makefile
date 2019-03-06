@@ -5,9 +5,9 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	date.java \
-	family.java \
+	date.java  \
 	person.java \
+	family.java \
 	project3.java
 
 default: classes

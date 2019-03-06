@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+
+
 public class project3{
     
     /*public static int famIndex(String input, ArrayList<family> arr){
@@ -30,8 +32,19 @@ public class project3{
         if(arr[curr].equals(s))
             return curr;
         return locationInArr(arr, s, ++curr);
-        
     }
+	
+	public person locationInArrList(ArrayList<person> arrList, String id){
+		int size = arrList.size();
+		for (int i = 0; i < size; i ++)
+		{
+			if (arrList.get(i).getID().equals(id))
+			{
+				return arrList.get(i);
+			}
+		}
+		return null;
+	}
     
     public static void main(String[] args)throws Exception{
         
@@ -204,6 +217,15 @@ public class project3{
         
         Collections.sort(people);
         Collections.sort(families);
+		
+		for(int i=0; i<families.size(); i++){
+			if (families.get(i).birthBeforeMarriage(people))
+			{
+				System.out.println("ERROR: Birthday of child is before Wedding Date of parents");
+			}
+			
+		}
+		
         
         for(int i=0; i<people.size(); i++){
             System.out.println(people.get(i).toString());
