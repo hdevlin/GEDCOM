@@ -203,6 +203,18 @@ public class project3{
         Collections.sort(families);
 
 		
+        for(int i=0; i<families.size(); i++) {
+            family curr = families.get(i);
+            person dad = curr.locationInArrList(people, curr.husbandid);
+            person mom = curr.locationInArrList(people, curr.wifeid);
+            if (curr.dadOld(dad, people) == true) {
+                System.out.println("US12: ERROR: Dad is 80+ years older than a child");
+            }
+            if (curr.momOld(mom, people) == true) {
+                System.out.println("US12: ERROR: Mom is 60+ years older than a child");
+            }
+    
+        }
         
         for(int i=0; i<people.size(); i++){
             System.out.println(people.get(i).toString());

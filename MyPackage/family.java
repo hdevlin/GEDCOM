@@ -197,6 +197,33 @@ public class family implements Comparable<family>{
 		return null;
 
 	}
+
+    public boolean dadOld(person dad, ArrayList<person> arrList) {
+        //returns true if dad is more than 80 years older than child
+        for(int i=0; i<children.size(); i++) {
+            String curr = children.get(i);
+            person child = locationInArrList(arrList, curr);
+            
+            if (Integer.parseInt(dad.getAge()) - Integer.parseInt(child.getAge()) >= 80){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean momOld(person mom, ArrayList<person> arrList) {
+        //returns true if dad is more than 80 years older than child
+        for(int i=0; i<children.size(); i++) {
+            String curr = children.get(i);
+            person child = locationInArrList(arrList, curr);
+            
+            if (Integer.parseInt(mom.getAge()) - Integer.parseInt(child.getAge()) >= 60){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @Override
     public String toString(){
         String x = "";
