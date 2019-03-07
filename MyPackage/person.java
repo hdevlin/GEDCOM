@@ -102,6 +102,9 @@ public class person implements Comparable<person>{
         return input;
     }
     public String setWeddingdate(String input) {
+        if(this.weddingdate != null && this.divorcedate == null) {
+            System.out.println("US11: Cannot be married again without being divorced");
+        }
     	this.weddingdate = input;
     	return input;
     }
