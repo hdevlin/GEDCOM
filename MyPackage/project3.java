@@ -215,21 +215,20 @@ public class project3{
             }
     
         }
-        
-        for(int i=0; i<people.size(); i++){
-            System.out.println(people.get(i).toString());
-        }
-        System.out.println();
-        for(int i=0; i<families.size(); i++){
-            System.out.println(families.get(i));
-        }
-        for (int i = 0; i< people.size(); i ++)
+		
+		for (int i = 0; i< people.size(); i ++)
         {
         	person current = people.get(i);
             if (!current.birthBeforeDeath())
             {
             	System.out.println("US03: ERROR: Birth occured after Death");
             }
+			if(!current.birthBeforeCurrentDate()){
+				System.out.println("US01: Error: Birth occured after the current date");
+			}
+			if(!current.deathBeforeCurrentDate()){
+				System.out.println("US01: Error: Death occured after the current date");
+			}
 
         }
 		
@@ -243,6 +242,12 @@ public class project3{
         	{
         		System.out.println("US04: ERROR: Marriage after Divorce");
         	}
+			if(!current.marriageBeforeCurrentDate()){
+				System.out.println("US01: Error: Marriage occured after the current date");
+			}
+			if(!current.divorceBeforeCurrentDate()){
+				System.out.println("US01: Error: Divorce occured after the current date");
+			}
         	person birth = current.birthBeforeDeath(people);
         	if (birth != null)
         	{
@@ -250,5 +255,14 @@ public class project3{
         	}
 			
 		}
+        
+        for(int i=0; i<people.size(); i++){
+            System.out.println(people.get(i).toString());
+        }
+        System.out.println();
+        for(int i=0; i<families.size(); i++){
+            System.out.println(families.get(i));
+        }
+        
     }
 }
