@@ -161,7 +161,42 @@ public class family implements Comparable<family>{
 		}
 		return false;
 	}
-    
+	public person birthBeforeDeath(ArrayList<person> arrList) //returns the name of the child that is born after the death of either parent or null if there aren't any
+	{
+		String deathDate = locationInArrList(arrList,husbandid).getDeathdate();
+		String momDeathDate = locationInArrList(arrList,wifeid).getDeathdate();
+		if (deathDate != "NA" || momDeathDate != "NA") //if the parents are still alive, the children must be born before they died
+		{
+			date dadDeath = null;
+			if (deathDate != "NA")
+				dadDeath = new date(deathDate);
+			date momDeath = null;
+			if (momDeathDate != "NA")
+				momDeath = new date(momDeathDate);
+			
+			for(int j=0; j<children.size(); j++){
+				person child = locationInArrList(arrList, children.get(j));
+				if (child != null)
+				{
+					String birthday = child.getBirthday();
+					if (birthday != "")
+					{
+						date birthdayDate = new date(birthday);
+						
+						if((dadDeath != null && date.before(dadDeath, birthdayDate)) || (momDeath != null && date.before(momDeath,birthdayDate))){
+							return child;
+						}
+					}
+				}
+				else
+				{
+					throw new NullPointerException("Person is  null");
+				}
+			}
+		}
+		return null;
+
+	}
     @Override
     public String toString(){
         String x = "";

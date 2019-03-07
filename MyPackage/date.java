@@ -43,6 +43,17 @@ public class date {
 		month = convertMonth(str.substring(firstSpace+1,secondSpace));
 		year = Integer.parseInt(str.substring(secondSpace+1));
 	}
+/*	public int difference(date other) //finds the difference between this date and the other in days
+	{
+		date earlier = this;
+		date later = other;
+		if (date.before(other, this))
+		{
+			earlier = other;
+			later = this;
+		}
+		int daysInYears = Math.max(0,365*(later.year - earlier.year-1)) + earlier.year  ;
+	}*/
 	public String toString()
 	{
 		return Integer.toString(day) + " " + Integer.toString(month) + " " + Integer.toString(year);

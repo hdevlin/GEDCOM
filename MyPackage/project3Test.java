@@ -12,6 +12,7 @@ public class project3Test {
 
 	@Test
 	public void test() {
+		
 		date d1 = new date("24 08 2000");
 		date d2 = new date( "24 01 2019");
 		date d3 = new date("24 08 2000");
@@ -60,6 +61,7 @@ public class project3Test {
 		p2.setDivorcedate("01 01 3000");
 		f2.setMarrdate("01 01 3000");
 		f2.setDivdate("01 01 3000");
+		f2.setChildren("@1@");
 
 	}
 

@@ -173,10 +173,6 @@ public class project3{
                     {
                     	person current = people.get(currPersonIndex);
                         current.setBirthday(third.concat(s));
-                        if (!current.birthBeforeDeath())
-                        {
-                        	System.out.println("US03: ERROR: Birth occured after Death");
-                        }
                     }
                     
                 } else if(lastDate.equals("DEAT")){
@@ -184,30 +180,18 @@ public class project3{
                     {
                     	person current = people.get(currPersonIndex);
                         current.setDeathdate(third.concat(s));
-                        if (!current.birthBeforeDeath())
-                        {
-                        	System.out.println("US03: ERROR: Birth occured after Death");
-                        }
                     }
                 } else if(lastDate.equals("MARR")){
                     if(currFamilyIndex != -1)
                     {
                     	family current = families.get(currFamilyIndex);
                     	current.setMarrdate(third.concat(s));
-                    	if (!current.marryBeforeDivorce())
-                    	{
-                    		System.out.println("US04: ERROR: Marriage after Divorce");
-                    	}
                     }
                 } else if(lastDate.equals("DIV")){
                     if(currFamilyIndex != -1)
                     {
                     	family current = families.get(currFamilyIndex);
                     	current.setDivdate(third.concat(s));
-                    	if (!current.marryBeforeDivorce())
-                    	{
-                    		System.out.println("US04: ERROR: Marriage after Divorce");
-                    	}
 
                     }
                 }
@@ -217,14 +201,7 @@ public class project3{
         
         Collections.sort(people);
         Collections.sort(families);
-		
-		for(int i=0; i<families.size(); i++){
-			if (families.get(i).birthBeforeMarriage(people))
-			{
-				System.out.println("US07: ERROR: Birthday of child is before Wedding Date of parents");
-			}
-			
-		}
+
 		
         
         for(int i=0; i<people.size(); i++){
@@ -234,5 +211,32 @@ public class project3{
         for(int i=0; i<families.size(); i++){
             System.out.println(families.get(i));
         }
+        for (int i = 0; i< people.size(); i ++)
+        {
+        	person current = people.get(i);
+            if (!current.birthBeforeDeath())
+            {
+            	System.out.println("US03: ERROR: Birth occured after Death");
+            }
+
+        }
+		
+		for(int i=0; i<families.size(); i++){
+			family current = families.get(i);
+			if (current.birthBeforeMarriage(people))
+			{
+				System.out.println("US08: ERROR: Birthday of child is before Wedding Date of parents");
+			}
+        	if (!current.marryBeforeDivorce())
+        	{
+        		System.out.println("US04: ERROR: Marriage after Divorce");
+        	}
+        	person birth = current.birthBeforeDeath(people);
+        	if (birth != null)
+        	{
+        		System.out.println("US09: ERROR: Birthday of :"  + birth.getName() + " is after death of either parent");
+        	}
+			
+		}
     }
 }
