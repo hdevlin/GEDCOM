@@ -8,7 +8,7 @@ public class person implements Comparable<person>{
     private String name;
     private String gender;
     private String birthday;
-    private String age;
+    private int age;
     private boolean alive;
     private String deathdate;//NA if perosn is alive
     private String children;
@@ -21,7 +21,7 @@ public class person implements Comparable<person>{
         name = "";
         gender = "";
         birthday = "";
-        age = "";
+        age = 0;
         alive = true;
         deathdate = "NA";
         children = "NA";
@@ -62,10 +62,10 @@ public class person implements Comparable<person>{
         return input;
     }
     
-    public String getAge(){
+    public int getAge(){
         return this.age;
     }
-    public String setAge(String input){
+    public int setAge(int input){
         this.age = input;
         return input;
     }
@@ -159,9 +159,8 @@ public class person implements Comparable<person>{
 	public boolean birthBeforeCurrentDate(){ //returns true if birthday is before the current date (US01)
 		if(birthday != ""){
 			Date curr = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
 			try{
-			return curr.compareTo(sdf.parse(birthday)) >= 0;
+			return curr.compareTo(new date(birthday).convert()) >= 0;
 			} catch(Exception e){
 				System.out.println("failed parse with exception" + e.toString());
 			}
@@ -172,9 +171,8 @@ public class person implements Comparable<person>{
 	public boolean deathBeforeCurrentDate(){ //returns true if death date is before the current date (US01)
 		if(deathdate != "NA"){
 			Date curr = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
 			try{
-			return curr.compareTo(sdf.parse(deathdate)) >= 0;
+			return curr.compareTo(new date(deathdate).convert()) >= 0;
 			} catch(Exception e){
 				System.out.println("failed parse with exception" + e.toString());
 			}

@@ -8,9 +8,12 @@
 package MyPackage;
 
 import java.io.*;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
+
 
 
 
@@ -32,6 +35,11 @@ public class project3{
         if(arr[curr].equals(s))
             return curr;
         return locationInArr(arr, s, ++curr);
+    }
+    
+    public static int convertMilliToYears(long milli)
+    {
+    	return ((int)(milli/1000/60/60/24/365));
     }
 	
 	public person locationInArrList(ArrayList<person> arrList, String id){
@@ -203,22 +211,22 @@ public class project3{
         Collections.sort(families);
 
 		
-        for(int i=0; i<families.size(); i++) {
-            family curr = families.get(i);
-            person dad = curr.locationInArrList(people, curr.husbandid);
-            person mom = curr.locationInArrList(people, curr.wifeid);
-            if (curr.dadOld(dad, people) == true) {
-                System.out.println("US12: ERROR: Dad is 80+ years older than a child");
-            }
-            if (curr.momOld(mom, people) == true) {
-                System.out.println("US12: ERROR: Mom is 60+ years older than a child");
-            }
-    
-        }
-		
 		for (int i = 0; i< people.size(); i ++)
         {
         	person current = people.get(i);
+        	if (current.getBirthday() != "")
+        	{
+	        	date birthday = new date(current.getBirthday());
+	        	Date b = birthday.convert();
+	        	if (current.getDeathdate() != "NA")
+	        	{
+	        		current.setAge(convertMilliToYears(new date(current.getDeathdate()).convert().getTime() - b.getTime()));
+	        	}
+	        	else
+	        	{
+	        		current.setAge(convertMilliToYears(System.currentTimeMillis()-b.getTime()));
+	        	}
+        	}
             if (!current.birthBeforeDeath())
             {
             	System.out.println("US03: ERROR: Birth occured after Death");
@@ -230,10 +238,19 @@ public class project3{
 				System.out.println("US01: Error: Death occured after the current date");
 			}
 
+
         }
 		
 		for(int i=0; i<families.size(); i++){
 			family current = families.get(i);
+            person dad = current.locationInArrList(people, current.husbandid);
+            person mom = current.locationInArrList(people, current.wifeid);
+            if (current.dadOld(dad, people) == true) {
+                System.out.println("US12: ERROR: Dad is 80+ years older than a child");
+            }
+            if (current.momOld(mom, people) == true) {
+                System.out.println("US12: ERROR: Mom is 60+ years older than a child");
+            }
 			if (current.birthBeforeMarriage(people))
 			{
 				System.out.println("US08: ERROR: Birthday of child is before Wedding Date of parents");

@@ -89,9 +89,8 @@ public class family implements Comparable<family>{
 	public boolean marriageBeforeCurrentDate(){ //returns true if wedding date is before the current date (US01)
 		if(marrdate != ""){
 			Date curr = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
 			try{
-			return curr.compareTo(sdf.parse(marrdate)) >= 0;
+			return curr.compareTo(new date(marrdate).convert()) >= 0;
 			} catch(Exception e){
 				System.out.println("failed parse with exception" + e.toString());
 			}
@@ -102,9 +101,8 @@ public class family implements Comparable<family>{
 	public boolean divorceBeforeCurrentDate(){ //returns true if divorce date is before the current date (US01)
 		if(divdate != "NA"){
 			Date curr = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
 			try{
-			return curr.compareTo(sdf.parse(divdate)) >= 0;
+			return curr.compareTo(new date(divdate).convert()) >= 0;
 			} catch(Exception e){
 				System.out.println("failed parse with exception" + e.toString());
 			}
@@ -204,7 +202,7 @@ public class family implements Comparable<family>{
             String curr = children.get(i);
             person child = locationInArrList(arrList, curr);
             
-            if (Integer.parseInt(dad.getAge()) - Integer.parseInt(child.getAge()) >= 80){
+            if (dad.getAge() - child.getAge() >= 80){
                 return true;
             }
         }
@@ -217,7 +215,7 @@ public class family implements Comparable<family>{
             String curr = children.get(i);
             person child = locationInArrList(arrList, curr);
             
-            if (Integer.parseInt(mom.getAge()) - Integer.parseInt(child.getAge()) >= 60){
+            if (mom.getAge() - child.getAge() >= 60){
                 return true;
             }
         }

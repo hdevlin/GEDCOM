@@ -1,4 +1,5 @@
 package MyPackage;
+import java.util.Date;
 
 public class date {
 	//holds operations for working with dates
@@ -43,17 +44,6 @@ public class date {
 		month = convertMonth(str.substring(firstSpace+1,secondSpace));
 		year = Integer.parseInt(str.substring(secondSpace+1));
 	}
-/*	public int difference(date other) //finds the difference between this date and the other in days
-	{
-		date earlier = this;
-		date later = other;
-		if (date.before(other, this))
-		{
-			earlier = other;
-			later = this;
-		}
-		int daysInYears = Math.max(0,365*(later.year - earlier.year-1)) + earlier.year  ;
-	}*/
 	public String toString()
 	{
 		return Integer.toString(day) + " " + Integer.toString(month) + " " + Integer.toString(year);
@@ -62,5 +52,15 @@ public class date {
 	{
 		
 		return (d1.year < d2.year) || (d1.year == d2.year && d1.month < d2.month)|| (d1.year == d2.year && d1.month == d2.month && d1.day < d2.day);
+	}
+	public Date convert()
+	{
+		return new Date(year-1900,month-1,day);
+	}
+	public long difference(date other) //finds the distance between this date and other
+	{
+		Date thisDate = new Date(year, month, day);
+		Date otherDate = new Date(other.year, other.month, other.day);
+		return thisDate.getTime() - otherDate.getTime();
 	}
 }
