@@ -20,7 +20,8 @@ public class project3Test {
 		assertTrue(date.before(d1, d2) == true);
 		assertTrue(date.before(d1, d3) == false);
 		assertTrue(date.before(d1, d4) == false);
-		
+		assertTrue(d1.difference(d1) == 0);
+		assertTrue(d2.differenceInYears(d1) == 19);
 		person p1 = new person();
 		assertTrue(p1.birthBeforeDeath() == true);
 		p1.setDeathdate("30 12 200");
@@ -62,7 +63,6 @@ public class project3Test {
 		f2.setMarrdate("01 01 3000");
 		f2.setDivdate("01 01 3000");
 		f2.setChildren("@1@");
-
 	}
 
 }

@@ -38,11 +38,17 @@ public class date {
 	}
 	public date(String str) //expects a string of form 'day month year'"
 	{
-		int firstSpace = str.indexOf(" ");
-		day = Integer.parseInt(str.substring(0,firstSpace));
-		int secondSpace = str.substring(firstSpace+1).indexOf(" ")+firstSpace+1;
-		month = convertMonth(str.substring(firstSpace+1,secondSpace));
-		year = Integer.parseInt(str.substring(secondSpace+1));
+		try {
+			int firstSpace = str.indexOf(" ");
+			day = Integer.parseInt(str.substring(0,firstSpace));
+			int secondSpace = str.substring(firstSpace+1).indexOf(" ")+firstSpace+1;
+			month = convertMonth(str.substring(firstSpace+1,secondSpace));
+			year = Integer.parseInt(str.substring(secondSpace+1));
+		}
+		catch (StringIndexOutOfBoundsException e)
+		{
+			System.out.println("unable to create date with value of " + str);
+		}
 	}
 	public String toString()
 	{
@@ -62,5 +68,9 @@ public class date {
 		Date thisDate = new Date(year, month, day);
 		Date otherDate = new Date(other.year, other.month, other.day);
 		return thisDate.getTime() - otherDate.getTime();
+	}
+	public int differenceInYears(date other)
+	{
+		return project3.convertMilliToYears(difference(other));
 	}
 }

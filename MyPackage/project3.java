@@ -245,6 +245,16 @@ public class project3{
 			family current = families.get(i);
             person dad = current.locationInArrList(people, current.husbandid);
             person mom = current.locationInArrList(people, current.wifeid);
+            if (dad.getBirthday() != "" && mom.getBirthday() != "")
+            {
+	            date d = new date(dad.getBirthday());
+	            date m = new date(mom.getBirthday());
+	            date marriage = new date(current.getMarrdate());
+	            if (marriage.difference(d) < 14 || marriage.difference(m) < 14) //if either parent was younger than 14 when married
+	            {
+	            	System.out.println("US10: ERROR: One parent was younger than 14 when married");
+	            }
+            }
             if (current.dadOld(dad, people) == true) {
                 System.out.println("US12: ERROR: Dad is 80+ years older than a child");
             }
