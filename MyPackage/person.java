@@ -59,6 +59,10 @@ public class person implements Comparable<person>{
     }
     public String setBirthday(String input){
         this.birthday = input;
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
         return input;
     }
     
@@ -83,6 +87,10 @@ public class person implements Comparable<person>{
     }
     public String setDeathdate(String input){
         this.deathdate = input;
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
         return input;
     }
     
@@ -102,6 +110,10 @@ public class person implements Comparable<person>{
         return input;
     }
     public String setWeddingdate(String input) {
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
         if(this.weddingdate != null && this.divorcedate == null) {
             System.out.println("US11: Cannot be married again without being divorced");
         }
@@ -111,6 +123,10 @@ public class person implements Comparable<person>{
     
     public String setDivorcedate(String input) {
     	this.divorcedate = input;
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
     	return input;
     }
     

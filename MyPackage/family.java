@@ -54,6 +54,10 @@ public class family implements Comparable<family>{
         return this.marrdate;
     }
     public String setMarrdate(String input){
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
         this.marrdate = input;
         return input;
     }
@@ -62,6 +66,10 @@ public class family implements Comparable<family>{
         return this.divdate;
     }
     public String setDivdate(String input){
+		if (!(new date(input).complete().isValid()))
+		{
+			System.out.println("US16: ERROR: Invalid Date: " + input);
+		}
         this.divdate = input;
         return input;
     }

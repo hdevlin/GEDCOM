@@ -13,14 +13,30 @@ public class project3Test {
 	@Test
 	public void test() {
 		
-		date d1 = new date("24 08 2000");
-		date d2 = new date( "24 01 2019");
+		date d1 = new date("24 AUG 2000");
+		date d2 = new date( "24 AUG 2019");
 		date d3 = new date("24 08 2000");
 		date d4 = new date("23 08 2000");
+		date d5 = new date( "12 01");
+		date d6 = new date("2000");
+		assertTrue(d5.day == -1);
+		assertTrue(d5.month == 12);
+		assertTrue(d5.year == 1);
+		assertTrue(d6.year == 2000);
+		assertTrue(d6.day == -1);
+		assertTrue(d6.month == -1);
+		assertTrue(d3.complete().toString().equals("24 1 2000"));
+		assertTrue(d6.complete().toString().equals("1 1 2000"));
+		assertTrue(d1.complete().toString().equals(d1.toString()));
+		date d7 = new date("13 3000");
+		assertTrue(d7.isIncomplete());
+		assertTrue(!d7.isValid());
+		date d8 = new date("30 FEB 3000");
+		assertTrue(!d8.isIncomplete());
+		assertTrue(!d8.isValid());
 		assertTrue(date.before(d1, d2) == true);
 		assertTrue(date.before(d1, d3) == false);
 		assertTrue(date.before(d1, d4) == false);
-		assertTrue(d1.difference(d1) == 0);
 		assertTrue(d2.differenceInYears(d1) == 19);
 		person p1 = new person();
 		assertTrue(p1.birthBeforeDeath() == true);
@@ -63,6 +79,7 @@ public class project3Test {
 		f2.setMarrdate("01 01 3000");
 		f2.setDivdate("01 01 3000");
 		f2.setChildren("@1@");
+		
 	}
 
 }
