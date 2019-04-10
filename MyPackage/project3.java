@@ -8,6 +8,7 @@
 package MyPackage;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +42,13 @@ public class project3{
     {
     	return ((int)(milli/1000/60/60/24/365));
     }
+    
+    public static boolean sameBirthday(person person1, person person2) {
+    	if (person1.getBirthday() == person2.getBirthday()) {
+    		return true;
+    	}
+    	return false;
+    }
 	
 	public person locationInArrList(ArrayList<person> arrList, String id){
 		int size = arrList.size();
@@ -53,6 +61,8 @@ public class project3{
 		}
 		return null;
 	}
+	
+	
     
     public static void main(String[] args)throws Exception{
         
@@ -209,11 +219,13 @@ public class project3{
         
         Collections.sort(people);
         Collections.sort(families);
-
-		
+        
+        int sameBirthdayChildren = 1;
+        
 		for (int i = 0; i< people.size(); i ++)
         {
         	person current = people.get(i);
+        	person next = people.get(i+1);
         	if (current.getBirthday() != "")
         	{
 	        	date birthday = new date(current.getBirthday());
@@ -237,9 +249,34 @@ public class project3{
 			if(!current.deathBeforeCurrentDate()){
 				System.out.println("US01: Error: Death occured after the current date");
 			}
-
+			
+			
+			if (sameBirthday(current, next)) {
+				sameBirthdayChildren += 1;
+			}
+			
+			if(sameBirthdayChildren > 5) {
+				System.out.println("US18: Error: Too many children with same birthday");
+			}
+			
+			date currentBirthday = new date(current.getBirthday());
+			date nextBirthday = new date(next.getBirthday());
+			String differenceString = String.valueOf(currentBirthday.difference(nextBirthday));
+			BigInteger eightmonths = new BigInteger("21020000000");
+			BigInteger twodays = new BigInteger("172800000");
+			BigInteger difference = new BigInteger(differenceString);
+			
+			if (difference.compareTo(eightmonths)!=1 && difference.compareTo(eightmonths)!=0) {
+				System.out.println("US17: Error: Siblings born less than 8 months apart");
+			}
+			else if(difference.compareTo(twodays)==1) {
+				System.out.println("US17: Error: Siblings born greater than 2 days apart");
+			}
+			
 
         }
+		
+		
 		
 		for(int i=0; i<families.size(); i++){
 			family current = families.get(i);
