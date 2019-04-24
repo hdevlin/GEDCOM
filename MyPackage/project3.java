@@ -279,7 +279,7 @@ public class project3{
 				System.out.println("US20: Error: Males do not have the same last name");
 			}
 			if(current.getSpouse() == current.getChildren()) {
-				System.out.println("US20: Error: Parents cannot marry descendants");
+				System.out.println("US21: Error: Parents cannot marry descendants");
 			}
 			
 
