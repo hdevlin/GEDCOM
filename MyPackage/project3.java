@@ -221,7 +221,7 @@ public class project3{
         Collections.sort(families);
         
         int sameBirthdayChildren = 1;
-        
+        String surname = people.get(0).getSurname();
 		for (int i = 0; i< people.size(); i ++)
         {
         	person current = people.get(i);
@@ -259,6 +259,8 @@ public class project3{
 				System.out.println("US18: Error: Too many children with same birthday");
 			}
 			
+			
+			
 			date currentBirthday = new date(current.getBirthday());
 			date nextBirthday = new date(next.getBirthday());
 			String differenceString = String.valueOf(currentBirthday.difference(nextBirthday));
@@ -271,6 +273,13 @@ public class project3{
 			}
 			else if(difference.compareTo(twodays)==1) {
 				System.out.println("US17: Error: Siblings born greater than 2 days apart");
+			}
+			
+			if(current.getGender()=="M" && current.getSurname()!= surname) {
+				System.out.println("US20: Error: Males do not have the same last name");
+			}
+			if(current.getSpouse() == current.getChildren()) {
+				System.out.println("US20: Error: Parents cannot marry descendants");
 			}
 			
 
