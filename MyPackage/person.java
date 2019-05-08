@@ -41,6 +41,14 @@ public class person implements Comparable<person>{
     public String getName(){
         return this.name;
     }
+    
+    public String getSurname() {
+    	String surname = "";
+    	if(name.split("\\w+").length>1){
+    	       surname = name.substring(name.lastIndexOf(" ")+1);
+    	}
+    	return surname;
+    }
     public String setName(String input){
         this.name = input;
         return input;
