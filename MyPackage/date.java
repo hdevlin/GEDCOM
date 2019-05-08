@@ -86,6 +86,10 @@ public class date {
 	}
 	public date(String str) //expects a string of form 'day month year'"
 	{
+		if (str == "")
+		{
+			return;
+		}
 		try {
 			int firstSpace = str.indexOf(" ");
 			if (firstSpace == -1) //this means the date only has a year

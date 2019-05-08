@@ -222,7 +222,7 @@ public class project3{
         
         int sameBirthdayChildren = 1;
         
-		for (int i = 0; i< people.size(); i ++)
+		for (int i = 0; i< people.size()-1; i ++)
         {
         	person current = people.get(i);
         	person next = people.get(i+1);
@@ -282,6 +282,26 @@ public class project3{
 			family current = families.get(i);
             person dad = current.locationInArrList(people, current.husbandid);
             person mom = current.locationInArrList(people, current.wifeid);
+            for (int j = 0; j < families.size(); j ++)
+            {
+            	family find = families.get(j); //we're going to search through every family
+            	boolean foundDad = false;
+            	boolean foundMom = false;
+            	for (int k = 0; k < find.children.size(); k ++)
+            	{
+            		foundDad = foundDad || find.children.get(k).equals(current.husbandid);
+            		foundMom = foundMom || find.children.get(k).equals(current.wifeid);
+            		if (foundDad && foundMom)
+            		{
+            			System.out.println("US22: Error: Siblings married");
+            			break;
+            		}
+            	}
+            	if (foundDad && foundMom)
+            	{
+            		break;
+            	}
+            }
             if (dad.getBirthday() != "" && mom.getBirthday() != "")
             {
 	            date d = new date(dad.getBirthday());
@@ -291,6 +311,10 @@ public class project3{
 	            {
 	            	System.out.println("US10: ERROR: One parent was younger than 14 when married");
 	            }
+            }
+            if (current.incest(people))
+            {
+            	System.out.println("US21: ERROR: Parent married descendent");
             }
             if (current.dadOld(dad, people) == true) {
                 System.out.println("US12: ERROR: Dad is 80+ years older than a child");

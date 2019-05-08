@@ -230,6 +230,20 @@ public class family implements Comparable<family>{
         return false;
     }
     
+    public boolean incest(ArrayList<person> arrList)
+    {
+    	for (int i = 0; i < children.size(); i ++)
+    	{
+    		String child = children.get(i);
+    		if (child.equals(husbandid) || child.equals(wifeid))
+    		{
+    			return true;
+    		}
+    		
+    	}
+    	return false;
+    }
+    
     @Override
     public String toString(){
         String x = "";
